@@ -1,14 +1,15 @@
 
-import mongoose from "mongoose";
-import movie from '../models/movieModel';
+let mongoose = require("mongoose");
+let movie = require('../models/movieModel');
 
 
-import { should as _should, use, request } from 'chai';
-import chaiHttp from 'chai-http';
-import server from '../server';
-let should = _should();
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let server = require('../server');
+let should = chai.should();
 
-use(chaiHttp);
+
+chai.use(chaiHttp);
 
 describe('Movies', () => {
     beforeEach((done) => {
@@ -18,7 +19,7 @@ describe('Movies', () => {
     });
   describe('/GET movies', () => {
       it('it should GET all movies', (done) => {
-        request(server)
+        chai.request(server)
             .get('/movies')
             .end((err, res) => {
                   res.should.have.status(200);
@@ -38,7 +39,7 @@ describe('Movies', () => {
               author: "J.R.R. Tolkien",
               year: 1954
           }
-        request(server)
+        chai.request(server)
             .post('/movies')
             .send(movie)
             .end((err, res) => {
