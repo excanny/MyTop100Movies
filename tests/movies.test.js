@@ -5,7 +5,7 @@ let movie = require('../models/movieModel');
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../server');
+let server = require('..');
 let should = chai.should();
 
 
